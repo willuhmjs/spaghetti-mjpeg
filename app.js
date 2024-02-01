@@ -37,7 +37,6 @@ app.get('/count.mjpeg', function(request, res) {
     'Pragma': 'no-cache'
   });
 
-  var i = 0;
   var stop = false;
 
   res.connection.on('close', function() { stop = true; });
@@ -45,9 +44,7 @@ app.get('/count.mjpeg', function(request, res) {
   var send_next = function() {
     if (stop)
       return;
-    i = (i+1) % 100;
-    var filename = i + ".jpg";
-    fs.readFile(__dirname + '/resources/' + filename, function (err, content) {
+    fs.readFile(__dirname + '/resources/0.jpg', function (err, content) {
       res.write("--myboundary\r\n");
       res.write("Content-Type: image/jpeg\r\n");
       res.write("Content-Length: " + content.length + "\r\n");
@@ -65,3 +62,4 @@ var port = process.env.PORT || 5000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
+
