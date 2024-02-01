@@ -58,7 +58,7 @@ app.get('/count.mjpeg', function(request, res) {
 });
 
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 25582;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
